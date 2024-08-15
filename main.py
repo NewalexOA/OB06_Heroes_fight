@@ -8,9 +8,13 @@ class Hero:
         self.attack_power = 20
 
     def attack(self, other):
-        # Герой атакует другого героя и отнимает здоровье в размере своей силы удара
-        other.health -= self.attack_power
-        print(f"{self.name} атакует {other.name} и наносит {self.attack_power} урона!")
+        # Добавляем случайное отклонение силы атаки в пределах ±10%
+        attack_modifier = random.uniform(0.9, 1.1)  # Генерируем случайное число от 0.9 до 1.1
+        actual_attack_power = int(self.attack_power * attack_modifier)  # Округляем силу атаки до целого числа
+
+        # Герой атакует другого героя и отнимает здоровье с учетом случайного отклонения
+        other.health -= actual_attack_power
+        print(f"{self.name} атакует {other.name} и наносит {actual_attack_power} урона!")
 
     def is_alive(self):
         # Проверка на жизнь героя
